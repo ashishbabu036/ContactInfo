@@ -6,6 +6,7 @@ using ContactInfo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
@@ -22,8 +23,7 @@ namespace ContactInfo
             RegisterAutofac();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-          //  RouteConfig.RegisterRoutes(RouteTable.Routes);           
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);           
         }
 
         private void RegisterAutofac()

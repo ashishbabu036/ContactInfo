@@ -10,11 +10,11 @@ namespace ContactInfo.Models
     [Table("Contact")]    
     public class Contact
     {
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
+        public  string FirstName { get; set; }
+        public  string LastName { get; set; }
         [Key]
-        public virtual string Email { get; set; }
-        public virtual long PhoneNumber { get; set; }
-        public virtual EnumStatus Status { get; set; }
+        public  string Email { get; set; }
+        public  long PhoneNumber { get; set; }
+        public  EnumStatus Status { get; set; }
     }
 }
