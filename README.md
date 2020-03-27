@@ -24,7 +24,7 @@ There are four APIs Designed for the same and tested on Postman locally.
    Request Body: Contact Object Type
    Response : 200 OK Status Code with boolean Value
    
-   Bried Info:
+   Brief Info about the Project Structure:
    
    1. Respective Xunit Test Cases have been written and all are passing.
    2. Used EF framework and code first approach to create the database.
