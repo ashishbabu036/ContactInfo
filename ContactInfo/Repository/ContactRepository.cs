@@ -14,20 +14,36 @@ namespace ContactInfo.Repository
         ContactDBContext _contactDBContext;
         public ContactRepository(ContactDBContext contactDBContext)
         {
+            if (contactDBContext == null)
+                throw new NullReferenceException();
             _contactDBContext = contactDBContext;
         }
 
-        public void AddContacts([FromBody] Contact contactInfo)
-        {            
-           _contactDBContext.Contacts.Add(contactInfo);
-           _contactDBContext.SaveChanges();  
+        public bool AddContacts([FromBody] Contact contactInfo)
+        {
+            if (!_contactDBContext.Contacts.Where(x => x.Email.Equals(contactInfo.Email, StringComparison.OrdinalIgnoreCase)).Any())
+            {
+                _contactDBContext.Contacts.Add(contactInfo);
+                _contactDBContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
 
         public Contact EditContact([FromBody] Contact contactInfo)
         {
-            _contactDBContext.Entry(contactInfo).State = System.Data.Entity.EntityState.Modified;
+            SetEntityStateModified(contactInfo);
             _contactDBContext.SaveChanges();
             return contactInfo;
+        }
+
+        public virtual void SetEntityStateModified(Contact contactInfo)
+        {
+            _contactDBContext.Entry(contactInfo).State = System.Data.Entity.EntityState.Modified;
         }
 
         public List<Contact> GetContacts()

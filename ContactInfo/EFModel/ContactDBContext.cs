@@ -13,6 +13,6 @@ namespace ContactInfo.EFModel
         {
 
         }
-        public DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
     }
 }

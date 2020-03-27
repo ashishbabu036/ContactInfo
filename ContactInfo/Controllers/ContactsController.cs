@@ -17,6 +17,8 @@ namespace ContactInfo.Controllers
         private IContactRepository _contactInfo;
         public ContactsController(IContactRepository contactInfo)
         {
+            if(contactInfo ==  null)
+                throw new NullReferenceException();
             _contactInfo = contactInfo;
         }
 
@@ -40,8 +42,10 @@ namespace ContactInfo.Controllers
         {
             try
             {
-                _contactInfo.AddContacts(contact);
-                return Ok();
+                if (_contactInfo.AddContacts(contact))                                  
+                    return Ok();               
+                else
+                    return InternalServerError();
             }
             catch (Exception ex)
             {

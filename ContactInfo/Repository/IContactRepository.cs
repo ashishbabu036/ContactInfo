@@ -11,7 +11,7 @@ namespace ContactInfo.Repository
     {
         List<Contact> GetContacts();
 
-        void AddContacts(Contact contactInfo);
+        bool AddContacts(Contact contactInfo);
 
         Contact EditContact(Contact contactInfo);
 
